@@ -10,13 +10,11 @@ router.use(cors(options));
 router.get('/get', (req, res) => {
     res.json(JSON.stringify(posts.getPosts()));
 });
-
 router.post('/post', bodyParser.json(), (req, res) => {
     let title = req.body.title;
     let description = req.body.description;
-
     posts.newPosts(title, description);
-    res.send('Post adicionado com sucesso');
+    res.send();
 });
 
 module.exports = router;

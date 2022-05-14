@@ -30,18 +30,24 @@ function newPosts() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
 
-    let posts = { title, description };
+    if (title === '') {
+        alert('Insira um título"');
+    } else if (description === '') {
+        alert('Insira uma descrição!');
+    } else {
+        let posts = { title, description };
 
-    const options = {
-        method: 'post',
-        headers: new Headers({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify(posts),
-    };
+        const options = {
+            method: 'post',
+            headers: new Headers({ 'Content-Type': 'application/json' }),
+            body: JSON.stringify(posts),
+        };
 
-    fetch('http://192.168.0.117:3001/api/post', options).then((res) => {
-        updatePosts();
+        fetch('http://192.168.0.117:3001/api/post', options).then((res) => {
+            updatePosts();
 
-        document.getElementById('title').value = '';
-        document.getElementById('description').value = '';
-    });
+            document.getElementById('title').value = '';
+            document.getElementById('description').value = '';
+        });
+    }
 }
